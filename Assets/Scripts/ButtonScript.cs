@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class ButtonScript : MonoBehaviour
 {
@@ -18,6 +19,19 @@ public class ButtonScript : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void Up()
+    {
+
+    }
+
+    private void Updown()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Up"))
+        {
+
+        }
     }
 
     public void Fire()

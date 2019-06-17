@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class player : MonoBehaviour {
-
+    float directiony;
 	public Vector2 jumpForce = new Vector2 (0, 200);
+    public float moveSpeed = 10f;
 
     //public GameObject projectilePrefab;
     //private List<GameObject> Projectiles = new List<GameObject> ();
     //private float projectileVelocity;
 
     private SpriteRenderer terbang1;
+    public Rigidbody2D rb;
 
     // Use this for initialization
     void Start () {
@@ -20,7 +23,7 @@ public class player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        Updown();
 		//for (int i = 0; i < Projectiles.Count; i++) {
 		//	GameObject iBullet = Projectiles [i];
 		//	if (iBullet != null) {
@@ -46,5 +49,22 @@ public class player : MonoBehaviour {
         
     }
 
-    
+    private void Updown()
+    {
+        directiony = CrossPlatformInputManager.GetAxis("Vertical"); 
+        if (CrossPlatformInputManager.GetButtonDown("Up"))
+        {
+
+        }
+
+        if (CrossPlatformInputManager.GetButtonDown("Down"))
+        {
+
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(rb.velocity.x , directiony * moveSpeed);
+    }
 }

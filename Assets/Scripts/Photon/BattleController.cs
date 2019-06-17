@@ -26,6 +26,6 @@ public class BattleController : MonoBehaviour
     void FixedUpdate()
     {
         prefabPlayer[0].transform.position = prefabPlayer[0].transform.position + new Vector3(0, 0, 0);
-        prefabPlayer[1].transform.position = prefabPlayer[1].transform.position + new Vector3(-0.01f, 0, 0);
+        prefabPlayer[1].transform.position = prefabPlayer[1].transform.position + new Vector3(0, 0, 0);
     }
 }
