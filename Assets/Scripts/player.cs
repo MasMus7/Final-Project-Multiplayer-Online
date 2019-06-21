@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
+using Photon.Pun;
 
 public class player : MonoBehaviour {
     float directiony;
@@ -12,13 +13,29 @@ public class player : MonoBehaviour {
     //public GameObject projectilePrefab;
     //private List<GameObject> Projectiles = new List<GameObject> ();
     //private float projectileVelocity;
+    public PhotonView pv;
 
     private SpriteRenderer terbang1;
     public Rigidbody2D rb;
 
+    public static bool Mine = false;
+    public static bool Yours = false;
+
     // Use this for initialization
     void Start () {
-		//projectileVelocity = 3;
+        //projectileVelocity = 3;
+        if (pv.IsMine)
+        {
+            this.gameObject.tag = "Player";
+            Mine = true;
+            Yours = false;
+        }
+        else
+        {
+            this.gameObject.tag = "Enemy";
+            Mine = false;
+            Yours = true;
+        }
 	}
 
 	// Update is called once per frame

@@ -176,7 +176,7 @@ MonoBehaviour:
   - {fileID: 151974707}
   prefabPlayer:
   - {fileID: 103, guid: d5cdc93bd1813424e9ede257691b67e9, type: 3}
-  - {fileID: 247, guid: f3e76537e85dda542b5e1edb112f73a7, type: 3}
+  - {fileID: 105, guid: f3e76537e85dda542b5e1edb112f73a7, type: 3}
 --- !u!4 &450225019
 Transform:
   m_ObjectHideFlags: 0

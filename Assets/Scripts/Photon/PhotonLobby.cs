@@ -57,4 +57,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         
     }
+
+    public void ToBattleMenu()
+    {
+        PhotonNetwork.LoadLevel("Lobby");
+    }
 }

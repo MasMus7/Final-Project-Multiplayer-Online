@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 248}
-  - component: {fileID: 518}
-  - component: {fileID: 534}
-  - component: {fileID: 502}
-  - component: {fileID: 8967428724273209045}
+  - component: {fileID: 520}
+  - component: {fileID: 504}
+  - component: {fileID: 497}
+  - component: {fileID: 536}
+  - component: {fileID: 537}
   - component: {fileID: 535}
-  - component: {fileID: 533}
-  - component: {fileID: 1638009030305659179}
+  - component: {fileID: 541}
   m_Layer: 9
   m_Name: player1
   m_TagString: Player
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &518
+--- !u!212 &520
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,22 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f41f745896cd09d4783099cc0819c102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: {x: 0, y: 200}
-  moveSpeed: 10
-  rb: {fileID: 8967428724273209045}
---- !u!61 &502
+--- !u!61 &504
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +111,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.48, y: 3}
   m_EdgeRadius: 0
---- !u!50 &8967428724273209045
+--- !u!50 &497
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -146,8 +131,24 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &535
+  m_Constraints: 4
+--- !u!114 &536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f41f745896cd09d4783099cc0819c102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: {x: 0, y: 200}
+  moveSpeed: 10
+  pv: {fileID: 537}
+  rb: {fileID: 497}
+--- !u!114 &537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,12 +166,12 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 533}
-  - {fileID: 1638009030305659179}
+  - {fileID: 535}
+  - {fileID: 541}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &533
+--- !u!114 &535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,7 +186,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
---- !u!114 &1638009030305659179
+--- !u!114 &541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
