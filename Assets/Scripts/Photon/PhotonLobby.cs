@@ -20,6 +20,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings(); //Menghubungkan ke server Master Photon
+        ServiceManager.instance.UnlockAchievement(GPGSIds.achievement_first_login);
     }
 
     public override void OnConnectedToMaster()
@@ -34,6 +35,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
         battleButton.SetActive(false);
         PhotonNetwork.JoinRandomRoom();
         StartCoroutine(WaitJoinRoom());
+        ServiceManager.instance.UnlockAchievement(GPGSIds.achievement_first_battle);
     }
 
     IEnumerator WaitJoinRoom()

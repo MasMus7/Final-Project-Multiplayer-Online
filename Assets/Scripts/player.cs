@@ -5,18 +5,19 @@ using UnityEngine.UI;
 using UnityStandardAssets.CrossPlatformInput;
 using Photon.Pun;
 
-public class player : MonoBehaviour {
+public class player : MonoBehaviourPun, IPunObservable
+{
     float directiony;
-	public Vector2 jumpForce = new Vector2 (0, 200);
+
     public float moveSpeed = 10f;
 
-    //public GameObject projectilePrefab;
-    //private List<GameObject> Projectiles = new List<GameObject> ();
-    //private float projectileVelocity;
     public PhotonView pv;
 
     private SpriteRenderer terbang1;
+    private Vector3 gerakBebas;
     public Rigidbody2D rb;
+    public GameObject senapanTembak;
+    public Transform tempatBidik;
 
     public static bool Mine = false;
     public static bool Yours = false;
@@ -27,6 +28,7 @@ public class player : MonoBehaviour {
         if (pv.IsMine)
         {
             this.gameObject.tag = "Player";
+            rb = GetComponent<Rigidbody2D>();
             Mine = true;
             Yours = false;
         }
@@ -40,30 +42,21 @@ public class player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        Updown();
-		//for (int i = 0; i < Projectiles.Count; i++) {
-		//	GameObject iBullet = Projectiles [i];
-		//	if (iBullet != null) {
-		//		iBullet.transform.Translate (new Vector3 (0, -1) * Time.deltaTime * projectileVelocity);
+        if (photonView.IsMine)
+        {
+            senapanTembak.gameObject.tag = "MyAmmo";
+            Updown();
+        }
+        else
+        {
+            senapanTembak.gameObject.tag = "YourAmmo";
+            pergerakanLain();
+        }
+    }
 
-		//		Vector3 bulletScreenPos = Camera.main.WorldToScreenPoint (iBullet.transform.position);
-		//		if (bulletScreenPos.y >= Screen.height || bulletScreenPos.y <= 0) {
-		//			DestroyObject (iBullet);
-		//			Projectiles.Remove (iBullet);
-		//		}
-		//	}
-		//}
-	}
-
-	void OnTriggerEnter2D (Collider2D coll) {
-		if (coll.gameObject.tag == "bullet") {
-			Die ();
-		}
-	}
-
-    void Die()
+    private void pergerakanLain()
     {
-        
+        transform.position = Vector3.Lerp(gerakBebas, transform.position, Time.deltaTime * 10);
     }
 
     private void Updown()
@@ -78,10 +71,28 @@ public class player : MonoBehaviour {
         {
 
         }
+
+        if (CrossPlatformInputManager.GetButtonDown("Shoot"))
+        {
+            GameObject senapan;
+            senapan = PhotonNetwork.Instantiate(senapanTembak.name, tempatBidik.position, Quaternion.identity);
+        }
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(rb.velocity.x , directiony * moveSpeed);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+        }
+        else if (stream.IsReading)
+        {
+            gerakBebas = (Vector3)stream.ReceiveNext();
+        }
     }
 }

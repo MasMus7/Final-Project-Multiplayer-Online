@@ -7,8 +7,9 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class ButtonScript : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-
+    public GameObject bulletPrefabBlue;
+    public GameObject bulletPrefabRed;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,25 +22,12 @@ public class ButtonScript : MonoBehaviour
 
     }
 
-    public void Up()
-    {
-
-    }
-
-    private void Updown()
-    {
-        if (CrossPlatformInputManager.GetButtonDown("Up"))
-        {
-
-        }
-    }
-
     public void Fire()
     {
         if (PhotonNetwork.IsMasterClient)
         {
             GameObject p1 = GameObject.Find("player1(Clone)");
-            GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name,
+            GameObject bullet = PhotonNetwork.Instantiate(bulletPrefabBlue.name,
                 new Vector3(p1.transform.position.x + 1.5f, p1.transform.position.y,
                 p1.transform.position.z), Quaternion.Euler(0, 0, -90));
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 0);
@@ -47,7 +35,7 @@ public class ButtonScript : MonoBehaviour
         else
         {
             GameObject p2 = GameObject.Find("player2(Clone)");
-            GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name,
+            GameObject bullet = PhotonNetwork.Instantiate(bulletPrefabRed.name,
                 new Vector3(p2.transform.position.x - 1.5f, p2.transform.position.y, 
                 p2.transform.position.z), Quaternion.Euler(0, 0, 90));
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 0);

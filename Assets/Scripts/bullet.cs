@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class bullet : MonoBehaviour {
+public class bullet : MonoBehaviourPun {
     public GameObject BulletPrefab;
-
-	// Use this for initialization
-	void Start () {
+    public float speed = 10f;
+    public GameObject lose;
+    public GameObject Win;
+    // Use this for initialization
+    void Start () {
 		
 	}
 
@@ -15,22 +17,24 @@ public class bullet : MonoBehaviour {
 	void Update () {
 		if(player.Mine == true)
         {
-            BulletPrefab.gameObject.tag = "MyAmmo";
+            transform.Translate(Vector2.left * Time.deltaTime * speed);
         }
         else if(player.Yours == true)
         {
-            BulletPrefab.gameObject.tag = "YourAmmo";
+            transform.Translate(Vector2.left * Time.deltaTime * speed);
         }
 	}
 
 	void OnCollisionEnter2D (Collision2D coll){
-        if (player.Mine == true)
+        if (photonView.IsMine)
         {
             if(BulletPrefab.gameObject.tag == "MyAmmo")
             {
                 if(coll.gameObject.tag == "Enemy")
                 {
                     PhotonNetwork.Destroy(coll.gameObject);
+                    ServiceManager.instance.UnlockAchievement(GPGSIds.achievement_first_kill);
+                    Win.gameObject.SetActive(true);
                 }
             }
             else if (BulletPrefab.gameObject.tag == "YourAmmo")
@@ -38,17 +42,21 @@ public class bullet : MonoBehaviour {
                 if(coll.gameObject.tag == "Player")
                 {
                     PhotonNetwork.Destroy(coll.gameObject);
+                    ServiceManager.instance.UnlockAchievement(GPGSIds.achievement_first_die);
+                    lose.gameObject.SetActive(true);
                 }
             }
         }
 
-        else if (player.Yours == true)
+        else
         {
             if (BulletPrefab.gameObject.tag == "MyAmmo")
             {
                 if (coll.gameObject.tag == "Enemy")
                 {
                     PhotonNetwork.Destroy(coll.gameObject);
+                    ServiceManager.instance.UnlockAchievement(GPGSIds.achievement_first_kill);
+                    Win.gameObject.SetActive(true);
                 }
             }
             else if (BulletPrefab.gameObject.tag == "YourAmmo")
@@ -56,13 +64,11 @@ public class bullet : MonoBehaviour {
                 if (coll.gameObject.tag == "Player")
                 {
                     PhotonNetwork.Destroy(coll.gameObject);
+                    ServiceManager.instance.UnlockAchievement(GPGSIds.achievement_first_die);
+                    lose.gameObject.SetActive(true);
                 }
             }
         }
-    }
 
-    void OnBecameInvisible()
-    {
-        PhotonNetwork.Destroy(gameObject);
     }
 }

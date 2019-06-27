@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 118181466848758052}
   m_Layer: 0
   m_Name: player2
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: {x: 0, y: 200}
   moveSpeed: 10
+  WinCondition: {fileID: 0}
+  LoseCondition: {fileID: 0}
   pv: {fileID: 540}
   rb: {fileID: 8874748627264652158}
 --- !u!114 &540

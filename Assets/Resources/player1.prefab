@@ -146,6 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: {x: 0, y: 200}
   moveSpeed: 10
+  WinCondition: {fileID: 0}
+  LoseCondition: {fileID: 0}
   pv: {fileID: 537}
   rb: {fileID: 497}
 --- !u!114 &537
@@ -169,7 +171,7 @@ MonoBehaviour:
   - {fileID: 535}
   - {fileID: 541}
   viewIdField: 0
-  InstantiationId: 0
+  InstantiationId: 1
   isRuntimeInstantiated: 0
 --- !u!114 &535
 MonoBehaviour:
